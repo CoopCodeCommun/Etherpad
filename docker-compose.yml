@@ -1,5 +1,5 @@
 services:
-  app:
+  etherpad:
     user: "0:0"
     image: etherpad/etherpad:latest
     tty: true
@@ -32,14 +32,16 @@ services:
       SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
     restart: always
-    ports:
-      - "${DOCKER_COMPOSE_APP_PORT_PUBLISHED:-9001}:${DOCKER_COMPOSE_APP_PORT_TARGET:-9001}"
+    # ports:
+      # - "${DOCKER_COMPOSE_APP_PORT_PUBLISHED:-9001}:${DOCKER_COMPOSE_APP_PORT_TARGET:-9001}"
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
       - traefik.http.routers.etherpad.tls.certresolver=myresolver
       - traefik.http.routers.etherpad.rule=Host(`$DOMAIN`)
       - traefik.http.services.etherpad.loadbalancer.server.port=9001
+    networks:
+      - frontend
 
   postgres:
     image: postgres:15-alpine
