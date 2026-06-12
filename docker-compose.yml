@@ -1,5 +1,5 @@
 services:
-  app:
+  etherpad:
     user: "0:0"
     image: etherpad/etherpad:latest
     tty: true
@@ -37,9 +37,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=frontend
-      - traefik.http.routers.syncthing.tls.certresolver=myresolver
-      - traefik.http.routers.syncthing.rule=Host(`$DOMAIN`)
-      - traefik.http.services.syncthing.loadbalancer.server.port=9001
+      - traefik.http.routers.etherpad.tls.certresolver=myresolver
+      - traefik.http.routers.etherpad.rule=Host(`$DOMAIN`)
+      - traefik.http.services.etherpad.loadbalancer.server.port=9001
 
   postgres:
     image: postgres:15-alpine
