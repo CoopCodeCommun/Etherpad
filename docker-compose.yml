@@ -1,5 +1,5 @@
 services:
-  etherpad:
+  app:
     user: "0:0"
     image: etherpad/etherpad:latest
     tty: true
