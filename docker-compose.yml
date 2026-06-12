@@ -35,15 +35,11 @@ services:
     ports:
       - "${DOCKER_COMPOSE_APP_PORT_PUBLISHED:-9001}:${DOCKER_COMPOSE_APP_PORT_TARGET:-9001}"
     labels:
-      # requiered
-      - "traefik.enable=true" 
-      - "traefik.docker.network=frontend"
-      - "traefik.http.routers.etherpad.tls.certresolver=myresolver"
-      - "traefik.http.services.etherpad.loadbalancer.server.port=9001"
-      - "traefik.http.routers.etherpad.rule=Host(`$DOMAIN`)"
-
-      # crowdsec
-      - "traefik.http.routers.etherpad.middlewares=crowdsec@file"
+      - traefik.enable=true
+      - traefik.docker.network=frontend
+      - traefik.http.routers.syncthing.tls.certresolver=myresolver
+      - traefik.http.routers.syncthing.rule=Host(`$DOMAIN`)
+      - traefik.http.services.syncthing.loadbalancer.server.port=9001
 
   postgres:
     image: postgres:15-alpine
