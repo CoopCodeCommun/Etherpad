@@ -42,6 +42,7 @@ services:
       - traefik.http.services.etherpad.loadbalancer.server.port=9001
     networks:
       - frontend
+      - backend
 
   postgres:
     image: postgres:15-alpine
@@ -62,7 +63,8 @@ services:
 networks:
   frontend:
     external: true
-
+  backend:
+    internal: true
 
 volumes:
   etherpad-var:
