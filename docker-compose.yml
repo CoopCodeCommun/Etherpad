@@ -39,7 +39,7 @@ services:
       - "traefik.enable=true" 
       - "traefik.docker.network=frontend"
       - "traefik.http.routers.etherpad.tls.certresolver=myresolver"
-      - "traefik.http.services.etherpad.loadbalancer.server.port=80"
+      - "traefik.http.services.etherpad.loadbalancer.server.port=9001"
       - "traefik.http.routers.etherpad.rule=Host(`$DOMAIN`)"
 
       # crowdsec
