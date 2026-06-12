@@ -6,7 +6,7 @@ services:
     stdin_open: true
     volumes:
       - ./plugins:/opt/etherpad-lite/src/plugin_packages
-      - ./etherpad-lite:/opt/etherpad-lite
+      - etherpad-var:/opt/etherpad-lite/var
       # OPTIONAL: persist admin /settings edits across container recreates.
       # Without this mount, settings.json lives in the image's writable
       # layer — `docker compose restart` preserves it, but `docker compose
@@ -66,3 +66,5 @@ networks:
     external: true
 
 
+volumes:
+  etherpad-var:
